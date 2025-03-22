@@ -943,7 +943,7 @@ const TeamSection = () => {
     },
     {
       name: " Arundathi Oshadhi Mendis",
-      role: "Server-side Development & Database Management",
+      role: "Server-Side Development & Database Management",
       image: "/oshadhi.jpg",
       work: "I work to build the database of the application",
       links: {
@@ -967,7 +967,7 @@ const TeamSection = () => {
     },
     {
       name: "Dithara Nimvini Andaraweera",
-      role: "server Side development & Marketing",
+      role: "Server Side Development & Marketing",
       image: "/dithara.jpg",
       work: "I work to build the backend of the application",
       links: {
@@ -979,7 +979,7 @@ const TeamSection = () => {
     },
     {
       name: "Thangavel Abishek",
-      role: "UI/UX Design & server-side development",
+      role: "UI/UX Design & Server-Side Development",
       image: "/abishek.jpg",
       work: "I work to build the backend of the application",
       links: {
@@ -991,7 +991,7 @@ const TeamSection = () => {
     },
     {
       name: "Buthmira Perera",
-      role: "UI/UX Design & Client Side development",
+      role: "UI/UX Design & Client Side Development",
       image: "/buthmira.jpg",
       work: "I work to build the frontend of the application",
       links: {

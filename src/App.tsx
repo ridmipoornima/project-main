@@ -21,13 +21,48 @@ import {
   Users,
   Zap
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => setShowAlert(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      {/* Animated Alert */}
+      {showAlert && (
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ duration: 0.5 }}
+          className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 alert-custom"
+        >
+          Coming soon
+        </motion.div>
+      )}
+      <style>{`
+        .alert-custom {
+          background: linear-gradient(135deg, #2563eb, #3b82f6);
+          border: 2px solid white;
+          font-size: 1.25rem;
+          padding: 0.75rem 1.5rem;
+          border-radius: 0.375rem;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          animation: pulseAlert 1.5s ease-in-out infinite;
+        }
+        @keyframes pulseAlert {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+      `}</style>
       {/* Enhanced Hero Section */}
       <header className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-blue-50 to-white">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -50,7 +85,7 @@ function App() {
                 "About",
                 "Contact",
                 "FAQ",
-                "Our Team"
+                "Our Team",
               ].map((item) => (
                 <a
                   key={item}
@@ -78,7 +113,7 @@ function App() {
                 "About",
                 "Contact",
                 "FAQ",
-                "Our Team"
+                "Our Team",
               ].map((item) => (
                 <a
                   key={item}
@@ -153,7 +188,7 @@ function App() {
           </div>
 
           {/* Add custom animation keyframes */}
-          <style >{`
+          <style>{`
             @keyframes fade-in-up {
               from {
                 opacity: 0;
@@ -314,7 +349,7 @@ function App() {
           <div className="absolute bottom-1/4 right-0 w-8 h-8 bg-blue-300 rounded-full animate-float opacity-50" />
         </div>
 
-        <style >{`
+        <style>{`
           @keyframes float {
             0%,
             100% {
@@ -372,7 +407,10 @@ function App() {
       </section>
 
       {/* About Us Section */}
-      <section id="about" className="relative overflow-hidden py-24 bg-gradient-to-b from-white to-gray-50">
+      <section
+        id="about"
+        className="relative overflow-hidden py-24 bg-gradient-to-b from-white to-gray-50"
+      >
         {/* Animated background elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-100 opacity-20 animate-pulse" />
@@ -429,7 +467,7 @@ function App() {
             {[
               { label: "Active Users", value: "50K+" },
               { label: "Educational Partners", value: "100+" },
-              { label: "Countries Reached", value: "25+" }
+              { label: "Countries Reached", value: "25+" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -487,7 +525,10 @@ function App() {
 
           <div className="space-y-6">
             {/* Primary CTA Button */}
-            <button className="group relative px-8 py-4 bg-white text-[#00224B] rounded-lg transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
+            <button
+              onClick={() => setShowAlert(true)}
+              className="group relative px-8 py-4 bg-white text-[#00224B] rounded-lg transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
+            >
               <span className="relative z-10 flex items-center justify-center">
                 Get Started
                 <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
@@ -500,10 +541,10 @@ function App() {
               {[
                 {
                   title: "Interactive Learning",
-                  desc: "Engage with dynamic content"
+                  desc: "Engage with dynamic content",
                 },
                 { title: "Expert Support", desc: "24/7 assistance available" },
-                { title: "Progress Tracking", desc: "Monitor your growth" }
+                { title: "Progress Tracking", desc: "Monitor your growth" },
               ].map((feature, index) => (
                 <div
                   key={index}
@@ -516,15 +557,15 @@ function App() {
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Trust indicators */}
-          <div className="mt-16 text-sm opacity-80">
-            <p className="flex items-center justify-center space-x-2">
-              <span>Trusted by</span>
-              <span className="font-bold">10,000+</span>
-              <span>educational institutions worldwide</span>
-            </p>
+            {/* Trust indicators */}
+            <div className="mt-16 text-sm opacity-80">
+              <p className="flex items-center justify-center space-x-2">
+                <span>Trusted by</span>
+                <span className="font-bold">10,000+</span>
+                <span>educational institutions worldwide</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -553,7 +594,10 @@ function App() {
 
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
             {/* Primary download button */}
-            <button className="group px-8 py-4 bg-[#00224B] text-white rounded-lg hover:bg-blue-800 transform hover:-translate-y-1 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center">
+            <button
+              onClick={() => setShowAlert(true)}
+              className="group px-8 py-4 bg-[#00224B] text-white rounded-lg hover:bg-blue-800 transform hover:-translate-y-1 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center"
+            >
               <Award className="w-5 h-5 mr-2 animate-pulse" />
               <span>Download Now</span>
               <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" />
@@ -570,7 +614,7 @@ function App() {
 function FeatureCard({
   icon,
   title,
-  description
+  description,
 }: {
   icon: React.ReactNode;
   title: string;
@@ -592,7 +636,7 @@ function TestimonialCard({
   text,
   author,
   role,
-  image
+  image,
 }: {
   text: string;
   author: string;
@@ -697,7 +741,7 @@ const FAQ = () => {
         </div>
       </div>
 
-      <style >{`
+      <style>{`
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -738,13 +782,13 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   const [focused, setFocused] = useState({
     name: false,
     email: false,
-    message: false
+    message: false,
   });
 
   const handleInputChange = (
@@ -753,21 +797,21 @@ const ContactSection = () => {
     const { id, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [id]: value
+      [id]: value,
     }));
   };
 
   const handleFocus = (field: "name" | "email" | "message") => {
     setFocused((prev) => ({
       ...prev,
-      [field]: true
+      [field]: true,
     }));
   };
 
   const handleBlur = (field: "name" | "email" | "message") => {
     setFocused((prev) => ({
       ...prev,
-      [field]: false
+      [field]: false,
     }));
   };
 
@@ -937,9 +981,9 @@ const TeamSection = () => {
         linkedin:
           "http://www.linkedin.com/in/panchani-gunarathne-108058318/johndoe",
         github: "https://github.com/Panchani0925",
-        email: "panchani.20233002@iit.ac.lk"
+        email: "panchani.20233002@iit.ac.lk",
       },
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-purple-500 to-pink-500",
     },
     {
       name: " Arundathi Oshadhi Mendis",
@@ -949,9 +993,9 @@ const TeamSection = () => {
       links: {
         linkedin: "http://www.linkedin.com/in/arundathi-oshadhi-061166336",
         github: "https://github.com/Oshadhi571",
-        email: "liyana.20232974@iit.ac.lk"
+        email: "liyana.20232974@iit.ac.lk",
       },
-      gradient: "from-blue-500 to-teal-500"
+      gradient: "from-blue-500 to-teal-500",
     },
     {
       name: "Ridmi Poornima",
@@ -961,9 +1005,9 @@ const TeamSection = () => {
       links: {
         linkedin: "https://www.linkedin.com/in/ridmi-epa-b569aa2ba/",
         github: "https://github.com/ridmipoornima",
-        email: "ridmipoornima.com"
+        email: "ridmipoornima.com",
       },
-      gradient: "from-orange-500 to-yellow-500"
+      gradient: "from-orange-500 to-yellow-500",
     },
     {
       name: "Dithara Nimvini Andaraweera",
@@ -973,9 +1017,9 @@ const TeamSection = () => {
       links: {
         linkedin: "http://www.linkedin.com/in/ditharaandaraweera",
         github: "https://github.com/DitharaAndaraweera",
-        email: "dithara.20231164@iit.ac.lk"
+        email: "dithara.20231164@iit.ac.lk",
       },
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "from-green-500 to-emerald-500",
     },
     {
       name: "Thangavel Abishek",
@@ -985,9 +1029,9 @@ const TeamSection = () => {
       links: {
         linkedin: "https://linkedin.com/in/charliedavis",
         github: "https://github.com/charliedavis",
-        email: "charlie@example.com"
+        email: "charlie@example.com",
       },
-      gradient: "from-red-500 to-rose-500"
+      gradient: "from-red-500 to-rose-500",
     },
     {
       name: "Buthmira Perera",
@@ -997,10 +1041,10 @@ const TeamSection = () => {
       links: {
         linkedin: "https://linkedin.com/in/evewilson",
         github: "https://github.com/evewilson",
-        email: "eve@example.com"
+        email: "eve@example.com",
       },
-      gradient: "from-indigo-500 to-violet-500"
-    }
+      gradient: "from-indigo-500 to-violet-500",
+    },
   ];
 
   return (
@@ -1063,7 +1107,7 @@ const TeamSection = () => {
                     linkedin: Linkedin,
                     github: Github,
                     website: Globe,
-                    email: Mail
+                    email: Mail,
                   }[platform];
                   if (!Icon) return null;
                   return (
@@ -1156,7 +1200,12 @@ const Footer = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* New Quick Links Section */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold">Quick Links</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo Section */}
           <div className="transform hover:scale-105 transition-transform">
             <div className="flex items-center space-x-2 mb-6">
@@ -1180,28 +1229,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              {["About Us", "Careers", "Contact"].map((item) => (
+              {["About", "Contact", "Our Team"].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase().replace(" ", "-")}`}
-                    className="text-gray-400 hover:text-white relative group block"
-                  >
-                    <span className="relative z-10">{item}</span>
-                    <span className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
-              {["Privacy Policy", "Terms of Service"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
                     className="text-gray-400 hover:text-white relative group block"
                   >
                     <span className="relative z-10">{item}</span>
@@ -1220,23 +1251,23 @@ const Footer = () => {
                 {
                   icon: Instagram,
                   name: "Instagram",
-                  url: "https://www.instagram.com/edunex_2025?utm_source=qr&igsh=amJ2bWhrOTZzbjMy"
+                  url: "https://www.instagram.com/edunex_2025?utm_source=qr&igsh=amJ2bWhrOTZzbjMy",
                 },
                 {
                   icon: Linkedin,
                   name: "LinkedIn",
-                  url: "https://www.linkedin.com/company/105658686/admin/dashboard/"
+                  url: "https://www.linkedin.com/company/105658686/admin/dashboard/",
                 },
                 {
                   icon: Facebook,
                   name: "Facebook",
-                  url: "https://www.facebook.com/share/1LE4XmXUvs/"
+                  url: "https://www.facebook.com/share/1LE4XmXUvs/",
                 }, // <-- added comma here
                 {
                   icon: Github, // corrected from "github" to "Github"
                   name: "Github", // updated name accordingly
-                  url: "https://github.com/Panchani0925/EduNex-CS-147-.git" // update URL if needed
-                }
+                  url: "https://github.com/Panchani0925/EduNex-CS-147-.git", // update URL if needed
+                },
               ].map(({ icon: Icon, name, url }) => (
                 <li key={name}>
                   <a

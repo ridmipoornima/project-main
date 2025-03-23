@@ -176,21 +176,20 @@ function App() {
               teachers, and parents for a seamless educational experience.
             </p>
 
-            {/* Feature image */}
-            <div className="relative max-w-6xl mx-auto animate-float flex justify-center">
+            {/* Feature image with mobile responsive modifications */}
+            <div className="relative w-full max-w-6xl mx-auto animate-float flex justify-center px-4">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg transform rotate-1 scale-105 opacity-20 blur-xl" />
               <img
                 src="/public/con.jpg"
                 alt="Student using EduNex"
-                className="relative w-full h-auto max-w-full rounded-lg shadow-2xl transform hover:scale-[1.05] transition-transform duration-300"
+                className="relative w-full h-auto rounded-lg shadow-2xl transform hover:scale-[1.05] transition-transform duration-300"
               />
               {/* Overlay text with animated gradient effect */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-4xl font-bold bg-gradient-to-r from-red-400 via-yellow-400 to-green-400 bg-clip-text text-transparent animate-gradient-text">
+                <span className="text-2xl sm:text-4xl md:text-4xl font-bold bg-gradient-to-r from-red-400 via-yellow-400 to-green-400 bg-clip-text text-transparent animate-gradient-text">
                   JOIN WITH US TODAY!!!!!!!
                 </span>
-                {/* Updated with typewriter animation */}
-                <span className="typewriter text-8xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-text">
+                <span className="typewriter text-4xl sm:text-8xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-text">
                   EduNex
                 </span>
               </div>

@@ -180,10 +180,20 @@ function App() {
             <div className="relative max-w-6xl mx-auto animate-float flex justify-center">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg transform rotate-1 scale-105 opacity-20 blur-xl" />
               <img
-                src="/OIP.jpg"
+                src="/public/con.jpg"
                 alt="Student using EduNex"
                 className="relative rounded-lg shadow-2xl transform hover:scale-[1.05] transition-transform duration-300"
               />
+              {/* Overlay text with animated gradient effect */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-4xl font-bold bg-gradient-to-r from-red-400 via-yellow-400 to-green-400 bg-clip-text text-transparent animate-gradient-text">
+                  JOIN WITH US TODAY!!!!!!!
+                </span>
+                {/* Updated with typewriter animation */}
+                <span className="typewriter text-8xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-text">
+                  EduNex
+                </span>
+              </div>
             </div>
           </div>
 
@@ -243,6 +253,31 @@ function App() {
 
             .animate-fade-in-letter {
               animation: fade-in-letter 0.5s ease-out forwards;
+            }
+
+            @keyframes gradientShift {
+              0% { background-position: 0% 50%; }
+              50% { background-position: 100% 50%; }
+              100% { background-position: 0% 50%; }
+            }
+            .animate-gradient-text {
+              background-size: 200% 200%;
+              animation: gradientShift 3s ease infinite;
+            }
+            @keyframes typewriter {
+              from { width: 0; }
+              to { width: 100%; }
+            }
+            @keyframes blinkCaret {
+              from, to { border-color: transparent; }
+              50% { border-color: orange; }
+            }
+            .typewriter {
+              display: inline-block;
+              white-space: nowrap;
+              overflow: hidden;
+              border-right: 0.15em solid orange;
+              animation: typewriter 4s steps(10) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
             }
           `}</style>
         </div>

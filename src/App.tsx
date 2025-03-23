@@ -182,7 +182,7 @@ function App() {
               <img
                 src="/public/con.jpg"
                 alt="Student using EduNex"
-                className="relative rounded-lg shadow-2xl transform hover:scale-[1.05] transition-transform duration-300"
+                className="relative w-full h-auto max-w-full rounded-lg shadow-2xl transform hover:scale-[1.05] transition-transform duration-300"
               />
               {/* Overlay text with animated gradient effect */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">

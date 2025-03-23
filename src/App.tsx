@@ -180,7 +180,7 @@ function App() {
             <div className="relative w-full max-w-6xl mx-auto animate-float flex justify-center px-4">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg transform rotate-1 scale-105 opacity-20 blur-xl" />
               <img
-                src="/public/con.jpg"
+                src="/convocation.jpg"
                 alt="Student using EduNex"
                 className="relative w-full h-auto rounded-lg shadow-2xl transform hover:scale-[1.05] transition-transform duration-300"
               />
